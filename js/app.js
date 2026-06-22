@@ -10,7 +10,103 @@ const stijlTekst =
 const stijlKnoppen =
     document.querySelectorAll(".style-option");
 
+const ictCheck =
+    document.getElementById("ictCheck");
+
+const codeCheck =
+    document.getElementById("codeCheck");
+
+const lengthCheck =
+    document.getElementById("lengthCheck");
+
+const contentCheck =
+    document.getElementById("contentCheck");
+
+const scopeTitel =
+    document.getElementById("scopeTitel");
+
+const scopeTekst =
+    document.getElementById("scopeTekst");
+
 let huidigeStijl = "standaard";
+
+const ictWoorden = [
+    "api",
+    "html",
+    "css",
+    "javascript",
+    "python",
+    "sql",
+    "database",
+    "netwerk",
+    "server",
+    "subnet",
+    "router",
+    "switch",
+    "cloud",
+    "azure",
+    "aws",
+    "github",
+    "git",
+    "linux",
+    "windows",
+    "vpn",
+    "firewall"
+];
+
+function controleerScope(vraag) {
+
+    const klein = vraag.toLowerCase();
+
+    const ict =
+        ictWoorden.some(
+            woord => klein.includes(woord)
+        );
+
+    const code =
+        vraag.includes("{") ||
+        vraag.includes("function") ||
+        vraag.includes("class ");
+
+    const teLang =
+        vraag.length > 500;
+
+    ictCheck.innerHTML =
+        ict
+            ? "✅ ICT-onderwerp"
+            : "❌ Geen ICT-onderwerp";
+
+    codeCheck.innerHTML =
+        !code
+            ? "✅ Geen codeblok"
+            : "❌ Code niet toegestaan";
+
+    lengthCheck.innerHTML =
+        !teLang
+            ? "✅ Lengte OK"
+            : "❌ Invoer te lang";
+
+    contentCheck.innerHTML =
+        "✅ Inhoud gecontroleerd";
+
+    if (ict && !code && !teLang) {
+
+        scopeTitel.innerHTML =
+            "✅ Toegestaan";
+
+        scopeTekst.innerHTML =
+            "Deze vraag voldoet aan de ICT-richtlijnen.";
+
+    } else {
+
+        scopeTitel.innerHTML =
+            "❌ Afgekeurd";
+
+        scopeTekst.innerHTML =
+            "Deze vraag valt buiten de toegestane scope.";
+
+    }
+}
 
 function updatePrompt() {
 
@@ -28,8 +124,28 @@ function updatePrompt() {
         promptBox.innerHTML =
             "Voer een ICT-vraag in.";
 
+        ictCheck.innerHTML =
+            "⏳ Wacht op invoer";
+
+        codeCheck.innerHTML =
+            "⏳ Wacht op invoer";
+
+        lengthCheck.innerHTML =
+            "⏳ Wacht op invoer";
+
+        contentCheck.innerHTML =
+            "⏳ Wacht op invoer";
+
+        scopeTitel.innerHTML =
+            "⏳ Wacht op invoer";
+
+        scopeTekst.innerHTML =
+            "Vul een ICT-vraag in.";
+
         return;
     }
+
+    controleerScope(vraag);
 
     let prompt = "";
 
@@ -79,7 +195,6 @@ stijlKnoppen.forEach(knop => {
             knop.dataset.style;
 
         updatePrompt();
-
     });
 
 });
