@@ -28,6 +28,15 @@ const scopeTitel =
 const scopeTekst =
     document.getElementById("scopeTekst");
 
+const genereerKnop =
+    document.querySelector(".button");
+
+const stappen =
+    document.querySelectorAll(".step");
+
+const antwoordVak =
+    document.querySelector(".answer");
+
 let huidigeStijl = "standaard";
 
 const ictWoorden = [
@@ -97,6 +106,8 @@ function controleerScope(vraag) {
         scopeTekst.innerHTML =
             "Deze vraag voldoet aan de ICT-richtlijnen.";
 
+        return true;
+
     } else {
 
         scopeTitel.innerHTML =
@@ -104,6 +115,8 @@ function controleerScope(vraag) {
 
         scopeTekst.innerHTML =
             "Deze vraag valt buiten de toegestane scope.";
+
+        return false;
 
     }
 }
@@ -123,24 +136,6 @@ function updatePrompt() {
 
         promptBox.innerHTML =
             "Voer een ICT-vraag in.";
-
-        ictCheck.innerHTML =
-            "⏳ Wacht op invoer";
-
-        codeCheck.innerHTML =
-            "⏳ Wacht op invoer";
-
-        lengthCheck.innerHTML =
-            "⏳ Wacht op invoer";
-
-        contentCheck.innerHTML =
-            "⏳ Wacht op invoer";
-
-        scopeTitel.innerHTML =
-            "⏳ Wacht op invoer";
-
-        scopeTekst.innerHTML =
-            "Vul een ICT-vraag in.";
 
         return;
     }
@@ -195,10 +190,89 @@ stijlKnoppen.forEach(knop => {
             knop.dataset.style;
 
         updatePrompt();
+
     });
 
 });
 
 vraagInput.addEventListener("input", updatePrompt);
+
+function resetStappen() {
+
+    stappen.forEach(stap => {
+
+        stap.style.opacity = "0.4";
+
+    });
+
+}
+
+function activeerStap(index) {
+
+    stappen[index].style.opacity = "1";
+
+}
+
+async function startProces() {
+
+    const vraag =
+        vraagInput.value.trim();
+
+    if (!vraag) return;
+
+    const toegestaan =
+        controleerScope(vraag);
+
+    if (!toegestaan) {
+
+        antwoordVak.innerHTML =
+            "<h3>Vraag afgekeurd</h3><p>Deze vraag valt buiten de scope van de applicatie.</p>";
+
+        return;
+    }
+
+    resetStappen();
+
+    antwoordVak.innerHTML =
+        "<h3>AI verwerkt je vraag...</h3>";
+
+    activeerStap(0);
+
+    await wacht(600);
+
+    activeerStap(1);
+
+    await wacht(600);
+
+    activeerStap(2);
+
+    await wacht(600);
+
+    activeerStap(3);
+
+    await wacht(600);
+
+    antwoordVak.innerHTML = `
+        <h3>Demo antwoord</h3>
+        <p>
+            Dit is momenteel een demonstratieantwoord.
+            In een volgende sprint vervangen we dit
+            door een echte OpenAI API-koppeling.
+        </p>
+    `;
+}
+
+function wacht(ms) {
+
+    return new Promise(resolve =>
+        setTimeout(resolve, ms)
+    );
+
+}
+
+genereerKnop.addEventListener(
+    "click",
+    startProces
+);
 
 updatePrompt();
