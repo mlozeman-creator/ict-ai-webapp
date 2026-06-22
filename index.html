@@ -4,12 +4,236 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICT AI</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Segoe UI, sans-serif;
+        }
+
+        body{
+            background:#f4f7fc;
+            display:flex;
+            min-height:100vh;
+        }
+
+        /* Sidebar */
+
+        .sidebar{
+            width:260px;
+            background:#07142d;
+            color:white;
+            padding:30px 20px;
+        }
+
+        .logo{
+            font-size:32px;
+            font-weight:bold;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#b9c4d8;
+            margin-bottom:40px;
+        }
+
+        .menu{
+            display:flex;
+            flex-direction:column;
+            gap:12px;
+        }
+
+        .menu button{
+            border:none;
+            padding:14px;
+            border-radius:12px;
+            cursor:pointer;
+            background:#10254f;
+            color:white;
+            font-size:16px;
+        }
+
+        .menu button.active{
+            background:linear-gradient(90deg,#2563eb,#9333ea);
+        }
+
+        /* Main */
+
+        .main{
+            flex:1;
+            padding:30px;
+        }
+
+        .hero{
+            background:linear-gradient(90deg,#2563eb,#9333ea);
+            color:white;
+            padding:30px;
+            border-radius:20px;
+            margin-bottom:25px;
+        }
+
+        .hero h1{
+            margin-bottom:10px;
+        }
+
+        .card{
+            background:white;
+            border-radius:20px;
+            padding:25px;
+            box-shadow:0 4px 15px rgba(0,0,0,.05);
+            margin-bottom:20px;
+        }
+
+        .card h2{
+            margin-bottom:20px;
+        }
+
+        input{
+            width:100%;
+            padding:15px;
+            border:1px solid #dce3ef;
+            border-radius:12px;
+            font-size:16px;
+        }
+
+        .choices{
+            display:flex;
+            gap:15px;
+            margin-top:20px;
+        }
+
+        .choice{
+            flex:1;
+            padding:20px;
+            border:2px solid #dce3ef;
+            border-radius:15px;
+            text-align:center;
+            cursor:pointer;
+        }
+
+        .choice.active{
+            border-color:#2563eb;
+            background:#eef4ff;
+        }
+
+        .button{
+            margin-top:20px;
+            background:linear-gradient(90deg,#2563eb,#9333ea);
+            color:white;
+            border:none;
+            padding:15px 25px;
+            border-radius:12px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        .answer{
+            min-height:180px;
+            background:#f8fbff;
+            border-radius:15px;
+            padding:20px;
+        }
+
+        @media(max-width:900px){
+
+            body{
+                flex-direction:column;
+            }
+
+            .sidebar{
+                width:100%;
+            }
+
+            .choices{
+                flex-direction:column;
+            }
+        }
+    </style>
+
 </head>
 <body>
 
-    <h1>ICT AI</h1>
+    <aside class="sidebar">
 
-    <p>Mijn eerste AI-webapplicatie.</p>
+        <div class="logo">ICT AI</div>
+
+        <div class="subtitle">
+            AI-assistent voor ICT
+        </div>
+
+        <div class="menu">
+            <button class="active">Nieuwe vraag</button>
+            <button>Dashboard</button>
+            <button>Geschiedenis</button>
+            <button>Voorbeelden</button>
+            <button>Instellingen</button>
+        </div>
+
+    </aside>
+
+    <main class="main">
+
+        <div class="hero">
+            <h1>Stel je ICT-vraag</h1>
+            <p>Krijg een duidelijk antwoord van AI.</p>
+        </div>
+
+        <div class="card">
+
+            <h2>Wat wil je weten?</h2>
+
+            <input
+                type="text"
+                placeholder="Bijvoorbeeld: Wat is een API?"
+            >
+
+            <div class="choices">
+
+                <div class="choice active">
+                    Uitleg
+                </div>
+
+                <div class="choice">
+                    Oefenvragen
+                </div>
+
+            </div>
+
+            <div class="choices">
+
+                <div class="choice">
+                    Compact
+                </div>
+
+                <div class="choice active">
+                    Standaard
+                </div>
+
+                <div class="choice">
+                    Uitgebreid
+                </div>
+
+            </div>
+
+            <button class="button">
+                Genereer antwoord
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h2>AI-antwoord</h2>
+
+            <div class="answer">
+                Hier komt straks het AI-antwoord.
+            </div>
+
+        </div>
+
+    </main>
 
 </body>
 </html>
