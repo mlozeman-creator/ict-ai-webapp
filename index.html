@@ -1,353 +1,254 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ICT AI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT AI</title>
 
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
-
-body{
-    background:#f4f7fc;
-    min-height:100vh;
-    display:flex;
-}
-
-/* ======================
-   SIDEBAR
-====================== */
-
-.sidebar{
-    width:260px;
-    background:#07142d;
-    color:white;
-    padding:30px 20px;
-}
-
-.logo{
-    font-size:36px;
-    font-weight:700;
-    margin-bottom:10px;
-}
-
-.subtitle{
-    color:#b8c5dc;
-    margin-bottom:40px;
-}
-
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.menu button{
-    border:none;
-    border-radius:12px;
-    padding:14px;
-    background:#122a59;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-}
-
-.menu button.active{
-    background:linear-gradient(90deg,#2563eb,#9333ea);
-}
-
-/* ======================
-   MAIN
-====================== */
-
-.main{
-    flex:1;
-    padding:25px;
-}
-
-.hero{
-    background:linear-gradient(90deg,#2563eb,#9333ea);
-    color:white;
-    padding:30px;
-    border-radius:20px;
-    margin-bottom:20px;
-}
-
-.hero h1{
-    margin-bottom:10px;
-}
-
-.content-grid{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:20px;
-}
-
-.card{
-    background:white;
-    border-radius:20px;
-    padding:25px;
-    box-shadow:0 4px 15px rgba(0,0,0,.05);
-    margin-bottom:20px;
-}
-
-.card h2{
-    margin-bottom:20px;
-}
-
-/* ======================
-   FORM
-====================== */
-
-input{
-    width:100%;
-    padding:15px;
-    border-radius:12px;
-    border:1px solid #d8e1ef;
-    font-size:16px;
-}
-
-.choices{
-    display:flex;
-    gap:15px;
-    margin-top:20px;
-}
-
-.choice{
-    flex:1;
-    padding:18px;
-    border-radius:14px;
-    border:2px solid #d8e1ef;
-    text-align:center;
-    cursor:pointer;
-}
-
-.choice.active{
-    border-color:#2563eb;
-    background:#eef4ff;
-}
-
-.button{
-    margin-top:20px;
-    border:none;
-    border-radius:12px;
-    padding:15px 25px;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-    background:linear-gradient(90deg,#2563eb,#9333ea);
-}
-
-/* ======================
-   AI PROCESS
-====================== */
-
-.process{
-    display:flex;
-    gap:15px;
-}
-
-.step{
-    flex:1;
-    background:#eef4ff;
-    border-radius:12px;
-    padding:15px;
-    text-align:center;
-    font-weight:600;
-}
-
-/* ======================
-   ANSWER
-====================== */
-
-.answer{
-    background:#f8fbff;
-    min-height:220px;
-    border-radius:15px;
-    padding:20px;
-}
-
-/* ======================
-   PROMPT
-====================== */
-
-.prompt-box{
-    background:#f8fbff;
-    border-radius:12px;
-    padding:15px;
-    margin-top:10px;
-    line-height:1.6;
-}
-
-/* ======================
-   SCOPE
-====================== */
-
-.scope-list{
-    list-style:none;
-}
-
-.scope-list li{
-    padding:12px 0;
-    border-bottom:1px solid #ececec;
-}
-
-/* ======================
-   RESPONSIVE
-====================== */
-
-@media(max-width:1200px){
-
-    .content-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:900px){
-
-    body{
-        flex-direction:column;
-    }
-
-    .sidebar{
-        width:100%;
-    }
-
-    .choices{
-        flex-direction:column;
-    }
-
-    .process{
-        flex-direction:column;
-    }
-
-}
-
-</style>
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<aside class="sidebar">
+    <aside class="sidebar">
 
-    <div class="logo">ICT AI</div>
+        <div class="logo">ICT AI</div>
 
-    <div class="subtitle">
-        AI-assistent voor ICT
-    </div>
+        <div class="subtitle">
+            AI-assistent voor ICT
+        </div>
 
-    <div class="menu">
+        <div class="menu">
 
-        <button class="active">Nieuwe vraag</button>
-        <button>Dashboard</button>
-        <button>Geschiedenis</button>
-        <button>Voorbeelden</button>
-        <button>Instellingen</button>
+            <button class="active">Nieuwe vraag</button>
+            <button>Dashboard</button>
+            <button>Geschiedenis</button>
+            <button>Voorbeelden</button>
+            <button>Instellingen</button>
 
-    </div>
+        </div>
 
-</aside>
+        <div class="sidebar-card">
 
-<main class="main">
+            <h3>🛡 Alleen ICT-onderwerpen</h3>
 
-    <div class="hero">
+            <p>
+                Deze tool ondersteunt uitsluitend ICT-gerelateerde vragen.
+            </p>
 
-        <h1>Stel je ICT-vraag</h1>
+        </div>
 
-        <p>
-            Krijg een duidelijk antwoord van AI.
-        </p>
+        <div class="sidebar-card">
 
-    </div>
+            <h3>⚡ Gebruik deze maand</h3>
 
-    <div class="content-grid">
+            <div class="usage">
 
-        <div class="left-column">
+                <strong>0 / 50</strong>
 
-            <div class="card">
+                <span>vragen gebruikt</span>
 
-                <h2>Wat wil je weten?</h2>
+            </div>
 
-                <input
-                    type="text"
-                    placeholder="Bijvoorbeeld: Wat is een API?"
-                >
+        </div>
 
-                <div class="choices">
+    </aside>
 
-                    <div class="choice active">
+    <main class="main">
+
+        <div class="hero">
+
+            <h1>Stel je ICT-vraag</h1>
+
+            <p>
+                Krijg een duidelijk antwoord van AI.
+            </p>
+
+        </div>
+
+        <div class="content-grid">
+
+            <div class="left-column">
+
+                <div class="card">
+
+                    <h2>Wat wil je weten?</h2>
+
+                    <input
+                        type="text"
+                        placeholder="Bijvoorbeeld: Wat is een API?"
+                    >
+
+                    <div class="choices">
+
+                        <div class="choice active">
+                            📖 Uitleg
+                        </div>
+
+                        <div class="choice">
+                            📝 Oefenvragen
+                        </div>
+
+                    </div>
+
+                    <div class="choices">
+
+                        <div class="choice">
+                            ⚡ Compact
+                        </div>
+
+                        <div class="choice active">
+                            ⭐ Standaard
+                        </div>
+
+                        <div class="choice">
+                            📚 Uitgebreid
+                        </div>
+
+                    </div>
+
+                    <button class="button">
+                        ✨ Genereer antwoord
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <h2>AI-proces</h2>
+
+                    <div class="process">
+
+                        <div class="step">
+                            1<br>
+                            Invoer
+                        </div>
+
+                        <div class="step">
+                            2<br>
+                            Scope
+                        </div>
+
+                        <div class="step">
+                            3<br>
+                            Prompt
+                        </div>
+
+                        <div class="step">
+                            4<br>
+                            Antwoord
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <h2>AI-antwoord</h2>
+
+                    <div class="answer">
+
+                        <h3>Wat is een API?</h3>
+
+                        <br>
+
+                        <p>
+                            Een API (Application Programming Interface) is een manier
+                            waarop softwareprogramma's met elkaar kunnen communiceren.
+                        </p>
+
+                        <br>
+
+                        <p>
+                            Zie het als een ober in een restaurant. Jij geeft een
+                            bestelling door, de ober brengt deze naar de keuken en
+                            komt vervolgens terug met het resultaat.
+                        </p>
+
+                        <br>
+
+                        <p>
+                            Websites en apps gebruiken API's om gegevens op te halen
+                            van andere systemen.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="right-column">
+
+                <div class="card">
+
+                    <h2>Prompt-opbouw</h2>
+
+                    <p>
+                        <strong>Onderwerp</strong><br>
+                        API
+                    </p>
+
+                    <br>
+
+                    <p>
+                        <strong>Type</strong><br>
                         Uitleg
-                    </div>
+                    </p>
 
-                    <div class="choice">
-                        Oefenvragen
-                    </div>
+                    <br>
 
-                </div>
-
-                <div class="choices">
-
-                    <div class="choice">
-                        Compact
-                    </div>
-
-                    <div class="choice active">
+                    <p>
+                        <strong>Antwoordstijl</strong><br>
                         Standaard
+                    </p>
+
+                    <br>
+
+                    <p>
+                        <strong>Eindprompt</strong>
+                    </p>
+
+                    <div class="prompt-box">
+
+                        Leg uit wat een API is.
+                        Geef een duidelijke uitleg met een voorbeeld.
+
                     </div>
 
-                    <div class="choice">
-                        Uitgebreid
-                    </div>
+                    <button class="copy-button">
+                        📋 Kopieer prompt
+                    </button>
 
                 </div>
 
-                <button class="button">
-                    Genereer antwoord
-                </button>
+                <div class="card">
 
-            </div>
+                    <h2>Scopecontrole</h2>
 
-            <div class="card">
+                    <ul class="scope-list">
 
-                <h2>AI-proces</h2>
+                        <li>✅ ICT-onderwerp</li>
 
-                <div class="process">
+                        <li>✅ Geen codeblok</li>
 
-                    <div class="step">
-                        1<br>Invoer
+                        <li>✅ Geen volledig gesprek</li>
+
+                        <li>✅ Geen ongepaste inhoud</li>
+
+                    </ul>
+
+                    <div class="scope-success">
+
+                        <strong>✓ Toegestaan</strong>
+
+                        <p>
+                            Deze vraag voldoet aan de ICT-richtlijnen.
+                        </p>
+
                     </div>
-
-                    <div class="step">
-                        2<br>Scope
-                    </div>
-
-                    <div class="step">
-                        3<br>Prompt
-                    </div>
-
-                    <div class="step">
-                        4<br>Antwoord
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h2>AI-antwoord</h2>
-
-                <div class="answer">
-
-                    Hier komt straks het AI-antwoord.
 
                 </div>
 
@@ -355,69 +256,10 @@ input{
 
         </div>
 
-        <div class="right-column">
+    </main>
 
-            <div class="card">
-
-                <h2>Prompt-opbouw</h2>
-
-                <p>
-                    <strong>Onderwerp</strong><br>
-                    API
-                </p>
-
-                <br>
-
-                <p>
-                    <strong>Type</strong><br>
-                    Uitleg
-                </p>
-
-                <br>
-
-                <p>
-                    <strong>Antwoordstijl</strong><br>
-                    Standaard
-                </p>
-
-                <br>
-
-                <p>
-                    <strong>Eindprompt</strong>
-                </p>
-
-                <div class="prompt-box">
-
-                    Leg uit wat een API is.
-                    Geef een duidelijke uitleg met een voorbeeld.
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h2>Scopecontrole</h2>
-
-                <ul class="scope-list">
-
-                    <li>✅ ICT-onderwerp</li>
-
-                    <li>✅ Geen codeblok</li>
-
-                    <li>✅ Geen volledig gesprek</li>
-
-                    <li>✅ Geen ongepaste inhoud</li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</main>
+    <script src="js/app.js"></script>
 
 </body>
+
 </html>
