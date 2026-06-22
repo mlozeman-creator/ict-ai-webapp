@@ -1,6 +1,12 @@
 const vraagInput = document.querySelector("input");
 const promptBox = document.querySelector(".prompt-box");
 
+const onderwerpTekst =
+    document.getElementById("onderwerpTekst");
+
+const stijlTekst =
+    document.getElementById("stijlTekst");
+
 const stijlKnoppen =
     document.querySelectorAll(".style-option");
 
@@ -10,10 +16,17 @@ function updatePrompt() {
 
     const vraag = vraagInput.value.trim();
 
+    onderwerpTekst.textContent =
+        vraag || "Nog geen vraag";
+
+    stijlTekst.textContent =
+        huidigeStijl.charAt(0).toUpperCase() +
+        huidigeStijl.slice(1);
+
     if (!vraag) {
 
         promptBox.innerHTML =
-            "Voer een ICT-vraag in om de prompt-opbouw te bekijken.";
+            "Voer een ICT-vraag in.";
 
         return;
     }
