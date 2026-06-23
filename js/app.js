@@ -7,8 +7,14 @@ const onderwerpTekst =
 const stijlTekst =
     document.getElementById("stijlTekst");
 
+const typeTekst =
+    document.getElementById("typeTekst");
+
 const stijlKnoppen =
     document.querySelectorAll(".style-option");
+
+const typeKnoppen =
+    document.querySelectorAll(".type-option");
 
 const ictCheck =
     document.getElementById("ictCheck");
@@ -31,6 +37,9 @@ const scopeTekst =
 const genereerKnop =
     document.querySelector(".button");
 
+const copyKnop =
+    document.querySelector(".copy-button");
+
 const stappen =
     document.querySelectorAll(".step");
 
@@ -38,34 +47,81 @@ const antwoordVak =
     document.querySelector(".answer");
 
 let huidigeStijl = "standaard";
+let huidigType = "uitleg";
 
 const ictWoorden = [
     "api",
     "html",
     "css",
     "javascript",
+    "js",
+    "typescript",
     "python",
+    "java",
+    "c#",
+    "php",
     "sql",
     "database",
-    "netwerk",
+    "mysql",
+    "postgresql",
+    "mongodb",
     "server",
+    "client",
+    "netwerk",
     "subnet",
     "router",
     "switch",
-    "cloud",
+    "dns",
+    "dhcp",
+    "tcp",
+    "ip",
+    "vpn",
+    "firewall",
     "azure",
     "aws",
-    "github",
-    "git",
+    "cloud",
     "linux",
     "windows",
-    "vpn",
-    "firewall"
+    "github",
+    "git",
+    "docker",
+    "kubernetes",
+    "ai",
+    "ict",
+    "frontend",
+    "backend",
+    "fullstack",
+    "json",
+    "xml",
+    "rest",
+    "graphql"
 ];
+
+function resetScope() {
+
+    ictCheck.innerHTML =
+        "⏳ Wacht op invoer";
+
+    codeCheck.innerHTML =
+        "⏳ Wacht op invoer";
+
+    lengthCheck.innerHTML =
+        "⏳ Wacht op invoer";
+
+    contentCheck.innerHTML =
+        "⏳ Wacht op invoer";
+
+    scopeTitel.innerHTML =
+        "⏳ Wacht op invoer";
+
+    scopeTekst.innerHTML =
+        "Vul een ICT-vraag in.";
+}
 
 function controleerScope(vraag) {
 
-    const klein = vraag.toLowerCase();
+    const klein =
+        vraag.toLowerCase();
 
     const ict =
         ictWoorden.some(
@@ -121,9 +177,62 @@ function controleerScope(vraag) {
     }
 }
 
+function bouwPrompt(vraag) {
+
+    if (!vraag) return "";
+
+    if (huidigType === "analyse") {
+
+        switch (huidigeStijl) {
+
+            case "compact":
+
+                return `Analyseer "${vraag}" kort.
+Geef alleen de belangrijkste bevindingen.`;
+
+            case "uitgebreid":
+
+                return `Maak een uitgebreide analyse van "${vraag}".
+Beschrijf sterke punten.
+Beschrijf zwakke punten.
+Bespreek risico's.
+Geef aanbevelingen.`;
+
+            default:
+
+                return `Analyseer "${vraag}".
+Beschrijf de belangrijkste onderdelen.
+Geef voor- en nadelen.
+Sluit af met een conclusie.`;
+        }
+    }
+
+    switch (huidigeStijl) {
+
+        case "compact":
+
+            return `Leg kort uit wat "${vraag}" betekent.
+Maximaal 100 woorden.`;
+
+        case "uitgebreid":
+
+            return `Leg uitgebreid uit wat "${vraag}" betekent.
+Gebruik praktijkvoorbeelden.
+Beschrijf belangrijke onderdelen.
+Ga dieper in op de werking.`;
+
+        default:
+
+            return `Leg duidelijk uit wat "${vraag}" betekent.
+Gebruik eenvoudige taal.
+Geef een praktijkvoorbeeld indien relevant.`;
+    }
+}
+
 function updatePrompt() {
 
-    const vraag = vraagInput.value.trim();
+    const vraag =
+        vraagInput.value.trim();
 
     onderwerpTekst.textContent =
         vraag || "Nog geen vraag";
@@ -132,56 +241,32 @@ function updatePrompt() {
         huidigeStijl.charAt(0).toUpperCase() +
         huidigeStijl.slice(1);
 
+    typeTekst.textContent =
+        huidigType.charAt(0).toUpperCase() +
+        huidigType.slice(1);
+
     if (!vraag) {
 
         promptBox.innerHTML =
             "Voer een ICT-vraag in.";
+
+        resetScope();
 
         return;
     }
 
     controleerScope(vraag);
 
-    let prompt = "";
-
-    switch (huidigeStijl) {
-
-        case "compact":
-
-            prompt =
-                `Leg kort uit wat "${vraag}" betekent.
-Maximaal 100 woorden.`;
-
-            break;
-
-        case "uitgebreid":
-
-            prompt =
-                `Leg uitgebreid uit wat "${vraag}" betekent.
-Gebruik praktijkvoorbeelden.
-Beschrijf belangrijke onderdelen.
-Ga dieper in op de werking.`;
-
-            break;
-
-        default:
-
-            prompt =
-                `Leg duidelijk uit wat "${vraag}" betekent.
-Gebruik eenvoudige taal.
-Geef een praktijkvoorbeeld indien relevant.`;
-
-    }
-
-    promptBox.innerHTML = prompt;
+    promptBox.innerHTML =
+        bouwPrompt(vraag);
 }
 
 stijlKnoppen.forEach(knop => {
 
     knop.addEventListener("click", () => {
 
-        stijlKnoppen.forEach(k =>
-            k.classList.remove("active")
+        stijlKnoppen.forEach(
+            k => k.classList.remove("active")
         );
 
         knop.classList.add("active");
@@ -195,7 +280,29 @@ stijlKnoppen.forEach(knop => {
 
 });
 
-vraagInput.addEventListener("input", updatePrompt);
+typeKnoppen.forEach(knop => {
+
+    knop.addEventListener("click", () => {
+
+        typeKnoppen.forEach(
+            k => k.classList.remove("active")
+        );
+
+        knop.classList.add("active");
+
+        huidigType =
+            knop.dataset.type;
+
+        updatePrompt();
+
+    });
+
+});
+
+vraagInput.addEventListener(
+    "input",
+    updatePrompt
+);
 
 function resetStappen() {
 
@@ -213,6 +320,14 @@ function activeerStap(index) {
 
 }
 
+function wacht(ms) {
+
+    return new Promise(resolve =>
+        setTimeout(resolve, ms)
+    );
+
+}
+
 async function startProces() {
 
     const vraag =
@@ -225,8 +340,12 @@ async function startProces() {
 
     if (!toegestaan) {
 
-        antwoordVak.innerHTML =
-            "<h3>Vraag afgekeurd</h3><p>Deze vraag valt buiten de scope van de applicatie.</p>";
+        antwoordVak.innerHTML = `
+            <h3>Vraag afgekeurd</h3>
+            <p>
+                Deze vraag valt buiten de scope van de applicatie.
+            </p>
+        `;
 
         return;
     }
@@ -256,23 +375,41 @@ async function startProces() {
         <h3>Demo antwoord</h3>
         <p>
             Dit is momenteel een demonstratieantwoord.
-            In een volgende sprint vervangen we dit
-            door een echte OpenAI API-koppeling.
+            In v1.2 vervangen we dit door een echte
+            OpenAI API-koppeling.
         </p>
     `;
 }
 
-function wacht(ms) {
+async function kopieerPrompt() {
 
-    return new Promise(resolve =>
-        setTimeout(resolve, ms)
+    const tekst =
+        promptBox.innerText;
+
+    await navigator.clipboard.writeText(
+        tekst
     );
 
+    copyKnop.innerHTML =
+        "✓ Gekopieerd";
+
+    setTimeout(() => {
+
+        copyKnop.innerHTML =
+            "📋 Kopieer prompt";
+
+    }, 2000);
 }
+
+copyKnop.addEventListener(
+    "click",
+    kopieerPrompt
+);
 
 genereerKnop.addEventListener(
     "click",
     startProces
 );
 
+resetScope();
 updatePrompt();
