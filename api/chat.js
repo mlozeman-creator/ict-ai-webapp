@@ -22,22 +22,15 @@ export default async function handler(req, res) {
                 body: JSON.stringify({
                     contents: [
                         {
-                            role: "user",
                             parts: [
                                 {
                                     text: `
 Je bent een deskundige Nederlandse ICT-docent.
 
-BELANGRIJK:
-- Antwoord ALTIJD in het Nederlands.
-- Gebruik duidelijke en begrijpelijke taal.
-- Gebruik Markdown-opmaak.
-- Gebruik kopjes waar relevant.
-- Gebruik opsommingstekens waar relevant.
-- Geef praktijkvoorbeelden indien mogelijk.
-- Beantwoord uitsluitend ICT-gerelateerde vragen.
-
-Vraag:
+Antwoord altijd in het Nederlands.
+Gebruik duidelijke taal.
+Gebruik Markdown-opmaak met kopjes en opsommingen.
+Geef praktijkvoorbeelden waar relevant.
 
 ${prompt}
 `
@@ -49,33 +42,34 @@ ${prompt}
             }
         );
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
         if (!response.ok) {
 
             return res.status(response.status).json({
                 error:
-                    data.error?.message ||
-                    "Onbekende Gemini fout"
+                    data?.error?.message ||
+                    "AI-service niet beschikbaar"
             });
 
         }
 
         const antwoord =
-            data.candidates?.[0]?.content?.parts?.[0]?.text;
+            data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
         return res.status(200).json({
             antwoord:
                 antwoord ||
-                "Geen antwoord ontvangen van AI."
+                "Geen antwoord ontvangen van het model."
         });
 
     } catch (error) {
 
+        console.error(error);
+
         return res.status(500).json({
             error:
-                error.message
+                "Serverfout tijdens AI-verzoek"
         });
 
     }
