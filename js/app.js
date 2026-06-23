@@ -403,7 +403,9 @@ async function startProces() {
 
         antwoordVak.innerHTML = `
             <h3>AI-antwoord</h3>
-            <div>${data.antwoord}</div>
+            <div class="markdown-answer">
+                ${marked.parse(data.antwoord)}
+            </div>
         `;
 
     } catch (error) {
