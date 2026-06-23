@@ -350,6 +350,9 @@ async function startProces() {
         return;
     }
 
+    const prompt =
+        bouwPrompt(vraag);
+
     resetStappen();
 
     antwoordVak.innerHTML =
@@ -357,28 +360,50 @@ async function startProces() {
 
     activeerStap(0);
 
-    await wacht(600);
+    await wacht(300);
 
     activeerStap(1);
 
-    await wacht(600);
+    await wacht(300);
 
     activeerStap(2);
 
-    await wacht(600);
+    try {
 
-    activeerStap(3);
+        const response =
+            await fetch("/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+                body: JSON.stringify({
+                    prompt
+                })
+            });
 
-    await wacht(600);
+        const data =
+            await response.json();
 
-    antwoordVak.innerHTML = `
-        <h3>Demo antwoord</h3>
-        <p>
-            Dit is momenteel een demonstratieantwoord.
-            In v1.2 vervangen we dit door een echte
-            OpenAI API-koppeling.
-        </p>
-    `;
+        activeerStap(3);
+
+        antwoordVak.innerHTML = `
+            <h3>AI-antwoord</h3>
+            <p>${data.antwoord || "Geen antwoord ontvangen."}</p>
+        `;
+
+    } catch (error) {
+
+        antwoordVak.innerHTML = `
+            <h3>Fout</h3>
+            <p>
+                Er is een fout opgetreden bij het ophalen van het AI-antwoord.
+            </p>
+        `;
+
+        console.error(error);
+
+    }
 }
 
 async function kopieerPrompt() {
