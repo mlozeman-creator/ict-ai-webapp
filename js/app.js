@@ -164,17 +164,15 @@ function controleerScope(vraag) {
 
         return true;
 
-    } else {
-
-        scopeTitel.innerHTML =
-            "❌ Afgekeurd";
-
-        scopeTekst.innerHTML =
-            "Deze vraag valt buiten de toegestane scope.";
-
-        return false;
-
     }
+
+    scopeTitel.innerHTML =
+        "❌ Afgekeurd";
+
+    scopeTekst.innerHTML =
+        "Deze vraag valt buiten de toegestane scope.";
+
+    return false;
 }
 
 function bouwPrompt(vraag) {
@@ -241,9 +239,13 @@ function updatePrompt() {
         huidigeStijl.charAt(0).toUpperCase() +
         huidigeStijl.slice(1);
 
-    typeTekst.textContent =
-        huidigType.charAt(0).toUpperCase() +
-        huidigType.slice(1);
+    if (typeTekst) {
+
+        typeTekst.textContent =
+            huidigType.charAt(0).toUpperCase() +
+            huidigType.slice(1);
+
+    }
 
     if (!vraag) {
 
@@ -355,15 +357,15 @@ async function startProces() {
 
     resetStappen();
 
-    antwoordVak.innerHTML =
-        "<h3>AI verwerkt je vraag...</h3>";
+    antwoordVak.innerHTML = `
+        <h3>AI verwerkt je vraag...</h3>
+        <p>Gemini analyseert momenteel je vraag...</p>
+    `;
 
     activeerStap(0);
-
     await wacht(300);
 
     activeerStap(1);
-
     await wacht(300);
 
     activeerStap(2);
@@ -387,22 +389,33 @@ async function startProces() {
 
         activeerStap(3);
 
+        if (!response.ok) {
+
+            antwoordVak.innerHTML = `
+                <h3>AI tijdelijk niet beschikbaar</h3>
+                <p>
+                    ${data.error || "Onbekende fout"}
+                </p>
+            `;
+
+            return;
+        }
+
         antwoordVak.innerHTML = `
             <h3>AI-antwoord</h3>
-            <p>${data.antwoord || "Geen antwoord ontvangen."}</p>
+            <div>${data.antwoord}</div>
         `;
 
     } catch (error) {
 
-        antwoordVak.innerHTML = `
-            <h3>Fout</h3>
-            <p>
-                Er is een fout opgetreden bij het ophalen van het AI-antwoord.
-            </p>
-        `;
-
         console.error(error);
 
+        antwoordVak.innerHTML = `
+            <h3>Verbindingsfout</h3>
+            <p>
+                Er kon geen verbinding worden gemaakt met de AI-service.
+            </p>
+        `;
     }
 }
 
