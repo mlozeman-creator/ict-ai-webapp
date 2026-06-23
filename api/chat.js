@@ -25,12 +25,17 @@ export default async function handler(req, res) {
                             parts: [
                                 {
                                     text: `
-Je bent een deskundige Nederlandse ICT-docent.
+Beantwoord onderstaande vraag direct.
+
+Geef het uiteindelijke antwoord.
+Geef geen analyse.
+Geef geen instructies.
+Geef geen rolbeschrijving.
+Geef geen uitleg over hoe je gaat antwoorden.
 
 Antwoord altijd in het Nederlands.
-Gebruik duidelijke taal.
-Gebruik Markdown-opmaak met kopjes en opsommingen.
-Geef praktijkvoorbeelden waar relevant.
+
+Vraag:
 
 ${prompt}
 `
