@@ -13,28 +13,23 @@ export default async function handler(req, res) {
         const { prompt } = req.body;
 
         const response = await fetch(
-            "https://api.openai.com/v1/chat/completions",
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
             {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization":
-                        `Bearer ${process.env.OPENAI_API_KEY}`
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    model: "gpt-4.1-mini",
-                    messages: [
+                    contents: [
                         {
-                            role: "system",
-                            content:
-                                "Je bent een deskundige ICT-assistent. Beantwoord uitsluitend ICT-gerelateerde vragen."
-                        },
-                        {
-                            role: "user",
-                            content: prompt
+                            parts: [
+                                {
+                                    text:
+                                        `Je bent een deskundige ICT-assistent. Beantwoord uitsluitend ICT-gerelateerde vragen.\n\n${prompt}`
+                                }
+                            ]
                         }
-                    ],
-                    temperature: 0.3
+                    ]
                 })
             }
         );
@@ -42,16 +37,21 @@ export default async function handler(req, res) {
         const data =
             await response.json();
 
+        const antwoord =
+            data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+            "Geen antwoord ontvangen van Gemini.";
+
         return res.status(200).json({
-            antwoord:
-                data.choices[0].message.content
+            antwoord
         });
 
     } catch (error) {
 
+        console.error(error);
+
         return res.status(500).json({
             error:
-                "Fout bij OpenAI koppeling"
+                "Fout bij Gemini koppeling"
         });
 
     }
