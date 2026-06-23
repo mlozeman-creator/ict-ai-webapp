@@ -25,7 +25,22 @@ export default async function handler(req, res) {
                             role: "user",
                             parts: [
                                 {
-                                    text: prompt
+                                    text: `
+Je bent een deskundige Nederlandse ICT-docent.
+
+BELANGRIJK:
+- Antwoord ALTIJD in het Nederlands.
+- Gebruik duidelijke en begrijpelijke taal.
+- Gebruik Markdown-opmaak.
+- Gebruik kopjes waar relevant.
+- Gebruik opsommingstekens waar relevant.
+- Geef praktijkvoorbeelden indien mogelijk.
+- Beantwoord uitsluitend ICT-gerelateerde vragen.
+
+Vraag:
+
+${prompt}
+`
                                 }
                             ]
                         }
@@ -34,30 +49,33 @@ export default async function handler(req, res) {
             }
         );
 
-        const data = await response.json();
+        const data =
+            await response.json();
 
         if (!response.ok) {
 
             return res.status(response.status).json({
                 error:
-                    data?.error?.message ||
-                    "Gemini niet beschikbaar"
+                    data.error?.message ||
+                    "Onbekende Gemini fout"
             });
 
         }
 
         const antwoord =
-            data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            data.candidates?.[0]?.content?.parts?.[0]?.text;
 
         return res.status(200).json({
-            antwoord
+            antwoord:
+                antwoord ||
+                "Geen antwoord ontvangen van AI."
         });
 
     } catch (error) {
 
         return res.status(500).json({
             error:
-                "Serverfout tijdens AI-verzoek"
+                error.message
         });
 
     }
