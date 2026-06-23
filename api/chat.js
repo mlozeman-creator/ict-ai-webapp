@@ -37,21 +37,15 @@ export default async function handler(req, res) {
         const data =
             await response.json();
 
-        const antwoord =
-            data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-            "Geen antwoord ontvangen van Gemini.";
-
-        return res.status(200).json({
-            antwoord
-        });
+        return res.status(200).json(data);
 
     } catch (error) {
 
         console.error(error);
 
         return res.status(500).json({
-            error:
-                "Fout bij Gemini koppeling"
+            error: "Fout bij Gemini koppeling",
+            details: error.message
         });
 
     }
