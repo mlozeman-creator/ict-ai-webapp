@@ -1,1 +1,52 @@
+/*
+========================================
+ICT AI Assistant
+DOM References
+Version 1.3.1
+========================================
+*/
 
+const questionInput =
+    document.querySelector("input");
+
+const promptBox =
+    document.querySelector(".prompt-box");
+
+const subjectText =
+    document.getElementById("onderwerpTekst");
+
+const responseStyleText =
+    document.getElementById("stijlTekst");
+
+const styleButtons =
+    document.querySelectorAll(".style-option");
+
+const ictCheck =
+    document.getElementById("ictCheck");
+
+const codeCheck =
+    document.getElementById("codeCheck");
+
+const lengthCheck =
+    document.getElementById("lengthCheck");
+
+const contentCheck =
+    document.getElementById("contentCheck");
+
+const scopeTitle =
+    document.getElementById("scopeTitel");
+
+const scopeText =
+    document.getElementById("scopeTekst");
+
+const generateButton =
+    document.querySelector(".button");
+
+const copyButton =
+    document.querySelector(".copy-button");
+
+const processSteps =
+    document.querySelectorAll(".step");
+
+const answerContainer =
+    document.querySelector(".answer");
