@@ -1,5 +1,8 @@
-const vraagInput = document.querySelector("input");
-const promptBox = document.querySelector(".prompt-box");
+const vraagInput =
+    document.querySelector("input");
+
+const promptBox =
+    document.querySelector(".prompt-box");
 
 const onderwerpTekst =
     document.getElementById("onderwerpTekst");
@@ -7,14 +10,8 @@ const onderwerpTekst =
 const stijlTekst =
     document.getElementById("stijlTekst");
 
-const typeTekst =
-    document.getElementById("typeTekst");
-
 const stijlKnoppen =
     document.querySelectorAll(".style-option");
-
-const typeKnoppen =
-    document.querySelectorAll(".type-option");
 
 const ictCheck =
     document.getElementById("ictCheck");
@@ -46,10 +43,11 @@ const stappen =
 const antwoordVak =
     document.querySelector(".answer");
 
-let huidigeStijl = "standaard";
-let huidigType = "uitleg";
+let huidigeStijl =
+    "standaard";
 
 const ictWoorden = [
+
     "api",
     "html",
     "css",
@@ -90,11 +88,11 @@ const ictWoorden = [
     "ict",
     "frontend",
     "backend",
-    "fullstack",
     "json",
     "xml",
     "rest",
     "graphql"
+
 ];
 
 function resetScope() {
@@ -116,6 +114,7 @@ function resetScope() {
 
     scopeTekst.innerHTML =
         "Vul een ICT-vraag in.";
+
 }
 
 function controleerScope(vraag) {
@@ -173,58 +172,55 @@ function controleerScope(vraag) {
         "Deze vraag valt buiten de toegestane scope.";
 
     return false;
+
 }
 
 function bouwPrompt(vraag) {
 
     if (!vraag) return "";
 
-    if (huidigType === "analyse") {
-
-        switch (huidigeStijl) {
-
-            case "compact":
-
-                return `Analyseer "${vraag}" kort.
-Geef alleen de belangrijkste bevindingen.`;
-
-            case "uitgebreid":
-
-                return `Maak een uitgebreide analyse van "${vraag}".
-Beschrijf sterke punten.
-Beschrijf zwakke punten.
-Bespreek risico's.
-Geef aanbevelingen.`;
-
-            default:
-
-                return `Analyseer "${vraag}".
-Beschrijf de belangrijkste onderdelen.
-Geef voor- en nadelen.
-Sluit af met een conclusie.`;
-        }
-    }
-
     switch (huidigeStijl) {
 
         case "compact":
 
             return `Leg kort uit wat "${vraag}" betekent.
-Maximaal 100 woorden.`;
+
+Antwoord in het Nederlands.
+
+Gebruik maximaal 100 woorden.
+
+Geef één praktijkvoorbeeld.`;
 
         case "uitgebreid":
 
             return `Leg uitgebreid uit wat "${vraag}" betekent.
-Gebruik praktijkvoorbeelden.
-Beschrijf belangrijke onderdelen.
-Ga dieper in op de werking.`;
+
+Antwoord in het Nederlands.
+
+Gebruik Markdown met duidelijke kopjes.
+
+Leg stap voor stap uit.
+
+Gebruik meerdere praktijkvoorbeelden.
+
+Beschrijf ook de werking.
+
+Sluit af met een korte samenvatting.`;
 
         default:
 
             return `Leg duidelijk uit wat "${vraag}" betekent.
+
+Antwoord in het Nederlands.
+
 Gebruik eenvoudige taal.
-Geef een praktijkvoorbeeld indien relevant.`;
+
+Gebruik Markdown.
+
+Geef minimaal één praktijkvoorbeeld.`;
+
     }
+
 }
 
 function updatePrompt() {
@@ -239,30 +235,23 @@ function updatePrompt() {
         huidigeStijl.charAt(0).toUpperCase() +
         huidigeStijl.slice(1);
 
-    if (typeTekst) {
-
-        typeTekst.textContent =
-            huidigType.charAt(0).toUpperCase() +
-            huidigType.slice(1);
-
-    }
-
     if (!vraag) {
 
-        promptBox.innerHTML =
+        promptBox.textContent =
             "Voer een ICT-vraag in.";
 
         resetScope();
 
         return;
+
     }
 
     controleerScope(vraag);
 
-    promptBox.innerHTML =
+    promptBox.textContent =
         bouwPrompt(vraag);
-}
 
+}
 stijlKnoppen.forEach(knop => {
 
     knop.addEventListener("click", () => {
@@ -275,25 +264,6 @@ stijlKnoppen.forEach(knop => {
 
         huidigeStijl =
             knop.dataset.style;
-
-        updatePrompt();
-
-    });
-
-});
-
-typeKnoppen.forEach(knop => {
-
-    knop.addEventListener("click", () => {
-
-        typeKnoppen.forEach(
-            k => k.classList.remove("active")
-        );
-
-        knop.classList.add("active");
-
-        huidigType =
-            knop.dataset.type;
 
         updatePrompt();
 
@@ -350,6 +320,7 @@ async function startProces() {
         `;
 
         return;
+
     }
 
     const prompt =
@@ -357,16 +328,16 @@ async function startProces() {
 
     resetStappen();
 
-    antwoordVak.innerHTML = `
-        <h3>AI verwerkt je vraag...</h3>
-        <p>Gemini analyseert momenteel je vraag...</p>
-    `;
+    antwoordVak.innerHTML =
+        "<h3>AI verwerkt je vraag...</h3>";
 
     activeerStap(0);
-    await wacht(300);
+
+    await wacht(250);
 
     activeerStap(1);
-    await wacht(300);
+
+    await wacht(250);
 
     activeerStap(2);
 
@@ -374,14 +345,18 @@ async function startProces() {
 
         const response =
             await fetch("/api/chat", {
+
                 method: "POST",
+
                 headers: {
                     "Content-Type":
                         "application/json"
                 },
+
                 body: JSON.stringify({
                     prompt
                 })
+
             });
 
         const data =
@@ -389,38 +364,33 @@ async function startProces() {
 
         activeerStap(3);
 
-        if (!response.ok) {
+        let antwoord =
+            data.antwoord ||
+            data.error ||
+            "Geen antwoord ontvangen.";
 
-            antwoordVak.innerHTML = `
-                <h3>AI tijdelijk niet beschikbaar</h3>
-                <p>
-                    ${data.error || "Onbekende fout"}
-                </p>
-            `;
-
-            return;
-        }
+        antwoord =
+            antwoord.replace(/\n/g, "<br>");
 
         antwoordVak.innerHTML = `
             <h3>AI-antwoord</h3>
-            <div class="markdown-answer">
-                ${marked.parse(data.antwoord)}
-            </div>
+            <div>${antwoord}</div>
         `;
 
     } catch (error) {
 
-        console.error(error);
-
         antwoordVak.innerHTML = `
-            <h3>Verbindingsfout</h3>
+            <h3>Fout</h3>
             <p>
-                Er kon geen verbinding worden gemaakt met de AI-service.
+                Er is een fout opgetreden bij het ophalen van het AI-antwoord.
             </p>
         `;
-    }
-}
 
+        console.error(error);
+
+    }
+
+}
 async function kopieerPrompt() {
 
     const tekst =
@@ -439,6 +409,7 @@ async function kopieerPrompt() {
             "📋 Kopieer prompt";
 
     }, 2000);
+
 }
 
 copyKnop.addEventListener(
