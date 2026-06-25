@@ -80,18 +80,18 @@
                     </div>
 
                     <div class="choice style-option active"
-                         data-style="standaard">
+     data-style="standard">
 
-                        ⭐ Standaard
+    ⭐ Standaard
 
-                    </div>
+</div>
 
-                    <div class="choice style-option"
-                         data-style="uitgebreid">
+<div class="choice style-option"
+     data-style="extensive">
 
-                        📚 Uitgebreid
+    📚 Uitgebreid
 
-                    </div>
+</div>
 
                 </div>
 
@@ -219,7 +219,26 @@
 
 </main>
 
-<script src="js/app.js"></script>
+<script src="config/settings.js"></script>
 
+<script src="data/ictKeywords.js"></script>
+<script src="data/promptTemplates.js"></script>
+
+<script src="services/storageService.js"></script>
+<script src="services/geminiService.js"></script>
+
+<script src="modules/promptBuilder.js"></script>
+<script src="modules/scopeEngine.js"></script>
+<script src="modules/processManager.js"></script>
+<script src="modules/clipboard.js"></script>
+<script src="modules/api.js"></script>
+<script src="modules/application.js"></script>
+
+<script src="modules/ui/dom.js"></script>
+<script src="modules/ui/answerRenderer.js"></script>
+<script src="modules/ui/promptPreview.js"></script>
+<script src="modules/ui/eventHandlers.js"></script>
+
+<script src="js/app.js"></script>
 </body>
 </html>
