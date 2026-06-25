@@ -1,285 +1,144 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICT AI</title>
+    <title>ICT AI Assistant v1.3</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <div class="logo">ICT AI</div>
+    <div class="logo">ICT AI</div>
 
-        <div class="subtitle">
-            AI-assistent voor ICT
-            <br>
-            <strong>v1.2.2 Markdown Rendering</strong>
+    <div class="subtitle">
+        AI-assistent voor ICT
+        <br>
+        <strong>v1.3.0 Intelligent Prompt Engine</strong>
+    </div>
+
+    <div class="menu">
+        <button class="active">Nieuwe vraag</button>
+        <button>Dashboard</button>
+        <button>Geschiedenis</button>
+        <button>Voorbeelden</button>
+        <button>Instellingen</button>
+    </div>
+
+    <div class="sidebar-card">
+        <h3>🛡 Alleen ICT-onderwerpen</h3>
+        <p>Deze AI-assistent ondersteunt uitsluitend ICT-gerelateerde vragen.</p>
+    </div>
+
+    <div class="sidebar-card">
+        <h3>⚡ Gebruik</h3>
+        <div class="usage">
+            <strong>0 / 50</strong>
+            <span>vragen gebruikt</span>
         </div>
+    </div>
 
-        <div class="menu">
+    <div class="sidebar-card">
+        <h3>📦 Versie</h3>
+        <p>
+            ICT AI Assistant<br>
+            v1.3.0 Intelligent Prompt Engine
+        </p>
+    </div>
 
-            <button class="active">Nieuwe vraag</button>
-            <button>Dashboard</button>
-            <button>Geschiedenis</button>
-            <button>Voorbeelden</button>
-            <button>Instellingen</button>
+</aside>
 
-        </div>
+<main class="main">
 
-        <div class="sidebar-card">
+    <div class="hero">
+        <h1>Stel je ICT-vraag</h1>
+        <p>Krijg een duidelijk AI-antwoord op jouw ICT-vraag.</p>
+    </div>
 
-            <h3>🛡 Alleen ICT-onderwerpen</h3>
+    <div class="content-grid">
 
-            <p>
-                Deze tool ondersteunt uitsluitend ICT-gerelateerde vragen.
-            </p>
+        <div class="left-column">
 
-        </div>
+            <div class="card">
 
-        <div class="sidebar-card">
+                <h2>Wat wil je weten?</h2>
 
-            <h3>⚡ Gebruik deze maand</h3>
+                <input
+                    type="text"
+                    placeholder="Bijvoorbeeld: Wat is een API?"
+                >
 
-            <div class="usage">
+                <div class="choices">
 
-                <strong>0 / 50</strong>
+                    <div class="choice style-option"
+                         data-style="compact">
 
-                <span>vragen gebruikt</span>
+                        ⚡ Compact
+
+                    </div>
+
+                    <div class="choice style-option active"
+                         data-style="standaard">
+
+                        ⭐ Standaard
+
+                    </div>
+
+                    <div class="choice style-option"
+                         data-style="uitgebreid">
+
+                        📚 Uitgebreid
+
+                    </div>
+
+                </div>
+
+                <button class="button">
+                    ✨ Genereer antwoord
+                </button>
 
             </div>
 
-        </div>
+            <div class="card">
 
-        <div class="sidebar-card">
+                <h2>AI-proces</h2>
 
-            <h3>📦 Versie</h3>
+                <div class="process">
 
-            <p>
-                ICT AI Assistant<br>
-                v1.2.2 Markdown Rendering
-            </p>
-
-        </div>
-
-    </aside>
-
-    <main class="main">
-
-        <div class="hero">
-
-            <h1>Stel je ICT-vraag</h1>
-
-            <p>
-                Krijg een duidelijk antwoord van AI.
-            </p>
-
-        </div>
-
-        <div class="content-grid">
-
-            <div class="left-column">
-
-                <div class="card">
-
-                    <h2>Wat wil je weten?</h2>
-
-                    <input
-                        type="text"
-                        placeholder="Bijvoorbeeld: Wat is een API?"
-                    >
-
-                    <div class="choices">
-
-                        <div
-                            class="choice type-option active"
-                            data-type="uitleg">
-
-                            📖 Uitleg
-
-                        </div>
-
-                        <div
-                            class="choice type-option"
-                            data-type="analyse">
-
-                            🔍 Analyse
-
-                        </div>
-
+                    <div class="step">
+                        1<br>Invoer
                     </div>
 
-                    <div class="choices">
-
-                        <div
-                            class="choice style-option"
-                            data-style="compact">
-
-                            ⚡ Compact
-
-                        </div>
-
-                        <div
-                            class="choice style-option active"
-                            data-style="standaard">
-
-                            ⭐ Standaard
-
-                        </div>
-
-                        <div
-                            class="choice style-option"
-                            data-style="uitgebreid">
-
-                            📚 Uitgebreid
-
-                        </div>
-
+                    <div class="step">
+                        2<br>Scope
                     </div>
 
-                    <button class="button">
-                        ✨ Genereer antwoord
-                    </button>
-
-                </div>
-
-                <div class="card">
-
-                    <h2>AI-proces</h2>
-
-                    <div class="process">
-
-                        <div class="step">
-                            1<br>
-                            Invoer
-                        </div>
-
-                        <div class="step">
-                            2<br>
-                            Scope
-                        </div>
-
-                        <div class="step">
-                            3<br>
-                            Prompt
-                        </div>
-
-                        <div class="step">
-                            4<br>
-                            Antwoord
-                        </div>
-
+                    <div class="step">
+                        3<br>Prompt
                     </div>
 
-                </div>
-
-                <div class="card">
-
-                    <h2>AI-antwoord</h2>
-
-                    <div class="answer">
-
-                        <h3>Wacht op een vraag</h3>
-
-                        <p>
-                            Klik op "Genereer antwoord"
-                            om het AI-proces te starten.
-                        </p>
-
+                    <div class="step">
+                        4<br>Antwoord
                     </div>
 
                 </div>
 
             </div>
 
-            <div class="right-column">
+            <div class="card">
 
-                <div class="card">
+                <h2>AI-antwoord</h2>
 
-                    <h2>Prompt-opbouw</h2>
+                <div class="answer">
 
-                    <p>
-                        <strong>Onderwerp</strong><br>
-                        <span id="onderwerpTekst">
-                            Nog geen vraag
-                        </span>
-                    </p>
-
-                    <br>
+                    <h3>Wacht op een vraag</h3>
 
                     <p>
-                        <strong>Type</strong><br>
-                        <span id="typeTekst">
-                            Uitleg
-                        </span>
+                        Klik op "Genereer antwoord"
+                        om het AI-proces te starten.
                     </p>
-
-                    <br>
-
-                    <p>
-                        <strong>Antwoordstijl</strong><br>
-                        <span id="stijlTekst">
-                            Standaard
-                        </span>
-                    </p>
-
-                    <br>
-
-                    <p>
-                        <strong>Eindprompt</strong>
-                    </p>
-
-                    <div class="prompt-box">
-
-                        Voer een ICT-vraag in.
-
-                    </div>
-
-                    <button class="copy-button">
-                        📋 Kopieer prompt
-                    </button>
-
-                </div>
-
-                <div class="card">
-
-                    <h2>Scopecontrole</h2>
-
-                    <ul class="scope-list">
-
-                        <li id="ictCheck">
-                            ⏳ Wacht op invoer
-                        </li>
-
-                        <li id="codeCheck">
-                            ⏳ Wacht op invoer
-                        </li>
-
-                        <li id="lengthCheck">
-                            ⏳ Wacht op invoer
-                        </li>
-
-                        <li id="contentCheck">
-                            ⏳ Wacht op invoer
-                        </li>
-
-                    </ul>
-
-                    <div class="scope-success">
-
-                        <strong id="scopeTitel">
-                            ⏳ Wacht op invoer
-                        </strong>
-
-                        <p id="scopeTekst">
-                            Vul een ICT-vraag in.
-                        </p>
-
-                    </div>
 
                 </div>
 
@@ -287,11 +146,80 @@
 
         </div>
 
-    </main>
+        <div class="right-column">
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="js/app.js"></script>
+            <div class="card">
+
+                <h2>Prompt-opbouw</h2>
+
+                <p>
+                    <strong>Onderwerp</strong><br>
+                    <span id="onderwerpTekst">
+                        Nog geen vraag
+                    </span>
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Antwoordstijl</strong><br>
+                    <span id="stijlTekst">
+                        Standaard
+                    </span>
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Eindprompt</strong>
+                </p>
+
+                <div class="prompt-box">
+
+                    Voer een ICT-vraag in.
+
+                </div>
+
+                <button class="copy-button">
+                    📋 Kopieer prompt
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Scopecontrole</h2>
+
+                <ul class="scope-list">
+
+                    <li id="ictCheck">⏳ Wacht op invoer</li>
+                    <li id="codeCheck">⏳ Wacht op invoer</li>
+                    <li id="lengthCheck">⏳ Wacht op invoer</li>
+                    <li id="contentCheck">⏳ Wacht op invoer</li>
+
+                </ul>
+
+                <div class="scope-success">
+
+                    <strong id="scopeTitel">
+                        ⏳ Wacht op invoer
+                    </strong>
+
+                    <p id="scopeTekst">
+                        Vul een ICT-vraag in.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script src="js/app.js"></script>
 
 </body>
-
 </html>
