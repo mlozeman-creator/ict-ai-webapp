@@ -3,12 +3,6 @@
 ICT AI Assistant
 Scope Engine
 Version 1.3.1
-
-NOTE:
-This is a temporary implementation.
-
-In a future release this module will
-use AI instead of a keyword list.
 ========================================
 */
 
@@ -33,7 +27,7 @@ function validateScope(question) {
     if (!question) {
 
         result.reason =
-            "No question provided.";
+            "Voer een vraag in.";
 
         return result;
 
@@ -80,22 +74,25 @@ function validateScope(question) {
     if (result.allowed) {
 
         result.reason =
-            "Question is within the ICT scope.";
+            "De vraag voldoet aan alle controles.";
 
-    } else if (!isICT) {
-
-        result.reason =
-            "Question is outside the ICT scope.";
-
-    } else if (result.containsCode) {
+    }
+    else if (!isICT) {
 
         result.reason =
-            "Code snippets are not allowed.";
+            "Deze vraag valt buiten de ICT-scope.";
 
-    } else if (result.questionTooLong) {
+    }
+    else if (result.containsCode) {
 
         result.reason =
-            "Question exceeds the maximum length.";
+            "Codefragmenten zijn niet toegestaan.";
+
+    }
+    else if (result.questionTooLong) {
+
+        result.reason =
+            "De vraag is te lang.";
 
     }
 
