@@ -20,6 +20,8 @@ async function startProcess() {
     const scope =
         validateScope(question);
 
+    updateScopeUI(scope);
+
     if (!scope.allowed) {
 
         showRejectedMessage();
@@ -55,6 +57,8 @@ async function startProcess() {
         await generateAnswer(prompt);
 
     activateProcessStep(3);
+
+    completeProcess();
 
     if (!result.success) {
 
