@@ -71,3 +71,45 @@ function showErrorMessage(message) {
     `;
 
 }
+
+function updateScopeUI(scope) {
+
+    ictCheck.textContent =
+        scope.category === "ICT"
+            ? "✅ ICT-onderwerp"
+            : "❌ Geen ICT-onderwerp";
+
+    codeCheck.textContent =
+        scope.containsCode
+            ? "❌ Code gedetecteerd"
+            : "✅ Geen code";
+
+    lengthCheck.textContent =
+        scope.questionTooLong
+            ? "❌ Vraag te lang"
+            : "✅ Lengte akkoord";
+
+    contentCheck.textContent =
+        scope.allowed
+            ? "✅ Inhoud gecontroleerd"
+            : "❌ Inhoud afgekeurd";
+
+    if (scope.allowed) {
+
+        scopeTitle.textContent =
+            "✅ Vraag goedgekeurd";
+
+        scopeText.textContent =
+            "De vraag voldoet aan alle controles.";
+
+    } else {
+
+        scopeTitle.textContent =
+            "❌ Vraag afgekeurd";
+
+        scopeText.textContent =
+            scope.reason;
+
+    }
+
+}
