@@ -4,13 +4,46 @@ ICT AI Assistant
 Gemini Service
 Version 1.3.1
 
-Reserved for future use.
+This service is reserved for future
+AI functionality.
 
-Possible future responsibilities:
+The current application communicates
+with Gemini through the backend
+/api/chat endpoint.
 
-- Multiple AI providers
-- AI model selection
-- AI provider abstraction
+Future responsibilities:
+
+- Model selection
+- Gemini-specific settings
+- AI Scope Engine
 - Consensus Engine
 ========================================
 */
+
+const GeminiService = {
+
+    model: "gemini-2.5-flash",
+
+    provider: "Google",
+
+    version: "v1beta",
+
+    isAvailable() {
+
+        return true;
+
+    },
+
+    getModel() {
+
+        return this.model;
+
+    },
+
+    getProvider() {
+
+        return this.provider;
+
+    }
+
+};
