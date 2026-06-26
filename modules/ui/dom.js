@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 DOM References
-Version 1.4.1
+Version 1.4.2
 ========================================
 */
 
@@ -50,6 +50,27 @@ const todayUsage =
 
 const totalUsage =
     document.getElementById("totalUsage");
+
+/*
+========================================
+Sidebar Buttons
+========================================
+*/
+
+const newQuestionButton =
+    document.getElementById("newQuestionButton");
+
+const dashboardButton =
+    document.getElementById("dashboardButton");
+
+const historyButton =
+    document.getElementById("historyButton");
+
+const examplesButton =
+    document.getElementById("examplesButton");
+
+const settingsButton =
+    document.getElementById("settingsButton");
 
 const generateButton =
     document.querySelector(".button");
