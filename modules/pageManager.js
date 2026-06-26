@@ -3,20 +3,12 @@
 ICT AI Assistant
 Page Manager
 Version 1.5.0
-
-Controls which page is visible.
 ========================================
 */
 
 function hideAllPages() {
 
-    questionCard.style.display =
-        "none";
-
-    processCard.style.display =
-        "none";
-
-    answerCard.style.display =
+    questionPage.style.display =
         "none";
 
 }
@@ -25,14 +17,12 @@ function showQuestionPage() {
 
     hideAllPages();
 
-    questionCard.style.display =
+    questionPage.style.display =
         "block";
 
-    processCard.style.display =
-        "block";
+    resetProcessSteps();
 
-    answerCard.style.display =
-        "block";
+    showWaitingMessage();
 
 }
 
@@ -40,7 +30,7 @@ function showHistoryPage() {
 
     hideAllPages();
 
-    answerCard.style.display =
+    questionPage.style.display =
         "block";
 
     showHistory();
@@ -51,9 +41,12 @@ function showDashboardPage() {
 
     hideAllPages();
 
+    questionPage.style.display =
+        "block";
+
     answerContainer.innerHTML = `
 
-        <h3>Dashboard</h3>
+        <h3>📊 Dashboard</h3>
 
         <p>
 
@@ -64,18 +57,18 @@ function showDashboardPage() {
 
     `;
 
-    answerCard.style.display =
-        "block";
-
 }
 
 function showExamplesPage() {
 
     hideAllPages();
 
+    questionPage.style.display =
+        "block";
+
     answerContainer.innerHTML = `
 
-        <h3>Voorbeelden</h3>
+        <h3>📚 Voorbeelden</h3>
 
         <p>
 
@@ -87,18 +80,18 @@ function showExamplesPage() {
 
     `;
 
-    answerCard.style.display =
-        "block";
-
 }
 
 function showSettingsPage() {
 
     hideAllPages();
 
+    questionPage.style.display =
+        "block";
+
     answerContainer.innerHTML = `
 
-        <h3>Instellingen</h3>
+        <h3>⚙️ Instellingen</h3>
 
         <p>
 
@@ -109,8 +102,5 @@ function showSettingsPage() {
         </p>
 
     `;
-
-    answerCard.style.display =
-        "block";
 
 }
