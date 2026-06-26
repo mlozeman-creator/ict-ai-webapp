@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 Event Handlers
-Version 1.4.2
+Version 1.5.0
 ========================================
 */
 
@@ -10,6 +10,52 @@ let currentResponseStyle =
     Settings.defaultResponseStyle;
 
 function initializeEventHandlers() {
+
+    /*
+    ========================================
+    Navigation
+    ========================================
+    */
+
+    newQuestionButton.addEventListener(
+
+        "click",
+
+        showQuestionPage
+
+    );
+
+    dashboardButton.addEventListener(
+
+        "click",
+
+        showDashboardPage
+
+    );
+
+    historyButton.addEventListener(
+
+        "click",
+
+        showHistoryPage
+
+    );
+
+    examplesButton.addEventListener(
+
+        "click",
+
+        showExamplesPage
+
+    );
+
+    settingsButton.addEventListener(
+
+        "click",
+
+        showSettingsPage
+
+    );
 
     /*
     ========================================
@@ -125,24 +171,6 @@ function initializeEventHandlers() {
                     "Schakel naar AI Scope";
 
             }
-
-        }
-
-    );
-
-    /*
-    ========================================
-    Sidebar
-    ========================================
-    */
-
-    historyButton.addEventListener(
-
-        "click",
-
-        () => {
-
-            showHistory();
 
         }
 
