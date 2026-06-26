@@ -74,8 +74,12 @@ async function startProcess() {
 
     showAnswer(
 
-        result.answer
+    result.answer
 
-    );
+);
+
+StorageService.increaseQuestionCounter();
+
+updateUsageCard();
 
 }
