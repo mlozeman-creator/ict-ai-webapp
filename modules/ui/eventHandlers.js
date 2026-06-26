@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 Event Handlers
-Version 1.4.0
+Version 1.4.2
 ========================================
 */
 
@@ -11,10 +11,18 @@ let currentResponseStyle =
 
 function initializeEventHandlers() {
 
+    /*
+    ========================================
+    Response Style
+    ========================================
+    */
+
     styleButtons.forEach(button => {
 
         button.addEventListener(
+
             "click",
+
             () => {
 
                 styleButtons.forEach(item =>
@@ -45,6 +53,12 @@ function initializeEventHandlers() {
         );
 
     });
+
+    /*
+    ========================================
+    Question Input
+    ========================================
+    */
 
     questionInput.addEventListener(
 
@@ -77,6 +91,12 @@ function initializeEventHandlers() {
 
     );
 
+    /*
+    ========================================
+    Scope Engine
+    ========================================
+    */
+
     scopeEngineButton.addEventListener(
 
         "click",
@@ -94,7 +114,9 @@ function initializeEventHandlers() {
                 scopeEngineButton.textContent =
                     "Schakel naar Keyword Engine";
 
-            } else {
+            }
+
+            else {
 
                 scopeEngineStatus.textContent =
                     "🟡 Keyword Engine";
@@ -107,6 +129,30 @@ function initializeEventHandlers() {
         }
 
     );
+
+    /*
+    ========================================
+    Sidebar
+    ========================================
+    */
+
+    historyButton.addEventListener(
+
+        "click",
+
+        () => {
+
+            showHistory();
+
+        }
+
+    );
+
+    /*
+    ========================================
+    Buttons
+    ========================================
+    */
 
     copyButton.addEventListener(
 
