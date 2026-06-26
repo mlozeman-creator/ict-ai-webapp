@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 DOM References
-Version 1.4.2
+Version 1.5.0
 ========================================
 */
 
@@ -53,6 +53,21 @@ const totalUsage =
 
 /*
 ========================================
+Page Containers
+========================================
+*/
+
+const questionCard =
+    document.getElementById("questionCard");
+
+const processCard =
+    document.getElementById("processCard");
+
+const answerCard =
+    document.getElementById("answerCard");
+
+/*
+========================================
 Sidebar Buttons
 ========================================
 */
@@ -72,14 +87,32 @@ const examplesButton =
 const settingsButton =
     document.getElementById("settingsButton");
 
+/*
+========================================
+Buttons
+========================================
+*/
+
 const generateButton =
     document.querySelector(".button");
 
 const copyButton =
     document.querySelector(".copy-button");
 
+/*
+========================================
+Process
+========================================
+*/
+
 const processSteps =
     document.querySelectorAll(".step");
+
+/*
+========================================
+Answer
+========================================
+*/
 
 const answerContainer =
     document.querySelector(".answer");
