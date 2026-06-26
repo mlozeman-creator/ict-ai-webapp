@@ -72,6 +72,28 @@ function showErrorMessage(message) {
 
 }
 
+function resetScopeUI() {
+
+    ictCheck.textContent =
+        "⏳ Wacht op invoer";
+
+    codeCheck.textContent =
+        "⏳ Wacht op invoer";
+
+    lengthCheck.textContent =
+        "⏳ Wacht op invoer";
+
+    contentCheck.textContent =
+        "⏳ Wacht op invoer";
+
+    scopeTitle.textContent =
+        "⏳ Wacht op invoer";
+
+    scopeText.textContent =
+        "Vul een ICT-vraag in.";
+
+}
+
 function updateScopeUI(scope) {
 
     ictCheck.textContent =
