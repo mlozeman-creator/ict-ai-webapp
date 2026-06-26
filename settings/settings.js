@@ -26,6 +26,8 @@ const Settings = {
 
     enableScopeValidation: true,
 
-    enableClipboard: true
+    enableClipboard: true,
+
+    useAIScope: false
 
 };
