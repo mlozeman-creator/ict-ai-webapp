@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 Answer Renderer
-Version 1.3.1
+Version 1.4.2
 ========================================
 */
 
@@ -72,6 +72,72 @@ function showErrorMessage(message) {
 
 }
 
+function showHistory() {
+
+    const history =
+        StorageService.getHistory();
+
+    if (history.length === 0) {
+
+        answerContainer.innerHTML = `
+            <h3>Geschiedenis</h3>
+
+            <p>
+
+                Er zijn nog geen vragen opgeslagen.
+
+            </p>
+        `;
+
+        return;
+
+    }
+
+    let html = `
+        <h3>Geschiedenis</h3>
+    `;
+
+    history.forEach(item => {
+
+        html += `
+
+            <div class="history-item">
+
+                <strong>
+
+                    ${item.question}
+
+                </strong>
+
+                <br>
+
+                <small>
+
+                    ${item.date}
+
+                    <br>
+
+                    ${item.style}
+
+                    |
+
+                    ${item.engine}
+
+                </small>
+
+                <hr>
+
+            </div>
+
+        `;
+
+    });
+
+    answerContainer.innerHTML =
+        html;
+
+}
+
 function resetScopeUI() {
 
     ictCheck.textContent =
@@ -124,7 +190,9 @@ function updateScopeUI(scope) {
         scopeText.textContent =
             "De vraag voldoet aan alle controles.";
 
-    } else {
+    }
+
+    else {
 
         scopeTitle.textContent =
             "❌ Vraag afgekeurd";
