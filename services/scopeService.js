@@ -4,22 +4,44 @@ ICT AI Assistant
 Scope Service
 Version 1.4.0
 
-Temporary implementation.
+This service is the single entry point
+for all scope validation.
 
-This service acts as the single entry
-point for scope validation.
+Currently:
 
-Currently it uses the keyword engine.
+- Keyword Engine
+- AI Scope Engine (placeholder)
 
-Future versions will use the
-AI Scope Engine.
 ========================================
 */
 
-if (Settings.useAIScope) {
+async function checkScope(question) {
 
-    return checkAIScope(question);
+    if (Settings.useAIScope) {
+
+        return await checkAIScope(question);
+
+    }
+
+    return validateScope(question);
 
 }
 
-return validateScope(question);
+async function checkAIScope(question) {
+
+    /*
+    ========================================
+    Placeholder
+
+    In Sprint 2 this function will call
+    Gemini to classify the question.
+
+    For now we reuse the existing
+    keyword validation so the rest of
+    the application already works.
+    ========================================
+    */
+
+    return validateScope(question);
+
+}
