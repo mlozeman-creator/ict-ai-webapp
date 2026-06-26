@@ -52,13 +52,26 @@ function initializeEventHandlers() {
 
         () => {
 
+            const question =
+                questionInput.value.trim();
+
             updatePromptPreview(
 
-                questionInput.value.trim(),
+                question,
 
                 currentResponseStyle
 
             );
+
+            if (question === "") {
+
+                resetScopeUI();
+
+                showWaitingMessage();
+
+                resetProcessSteps();
+
+            }
 
         }
 
