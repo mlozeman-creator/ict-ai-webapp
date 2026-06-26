@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 Event Handlers
-Version 1.3.1
+Version 1.4.0
 ========================================
 */
 
@@ -70,6 +70,37 @@ function initializeEventHandlers() {
                 showWaitingMessage();
 
                 resetProcessSteps();
+
+            }
+
+        }
+
+    );
+
+    scopeEngineButton.addEventListener(
+
+        "click",
+
+        () => {
+
+            Settings.useAIScope =
+                !Settings.useAIScope;
+
+            if (Settings.useAIScope) {
+
+                scopeEngineStatus.textContent =
+                    "🟢 AI Scope Engine";
+
+                scopeEngineButton.textContent =
+                    "Schakel naar Keyword Engine";
+
+            } else {
+
+                scopeEngineStatus.textContent =
+                    "🟡 Keyword Engine";
+
+                scopeEngineButton.textContent =
+                    "Schakel naar AI Scope";
 
             }
 
