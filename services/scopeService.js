@@ -16,8 +16,10 @@ AI Scope Engine.
 ========================================
 */
 
-async function checkScope(question) {
+if (Settings.useAIScope) {
 
-    return validateScope(question);
+    return checkAIScope(question);
 
 }
+
+return validateScope(question);
