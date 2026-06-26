@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 Answer Renderer
-Version 1.4.2
+Version 1.5.0
 ========================================
 */
 
@@ -80,7 +80,7 @@ function showHistory() {
     if (history.length === 0) {
 
         answerContainer.innerHTML = `
-            <h3>Geschiedenis</h3>
+            <h3>🕒 Geschiedenis</h3>
 
             <p>
 
@@ -94,7 +94,9 @@ function showHistory() {
     }
 
     let html = `
-        <h3>Geschiedenis</h3>
+
+        <h3>🕒 Geschiedenis</h3>
+
     `;
 
     history.forEach(item => {
@@ -113,15 +115,15 @@ function showHistory() {
 
                 <small>
 
-                    ${item.date}
+                    📅 ${item.date}
 
                     <br>
 
-                    ${item.style}
+                    🎯 ${item.style}
 
                     |
 
-                    ${item.engine}
+                    🤖 ${item.engine}
 
                 </small>
 
