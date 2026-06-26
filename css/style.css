@@ -311,3 +311,192 @@ input:focus{
         flex-direction:column;
     }
 }
+/*
+========================================
+Dashboard
+Version 1.5.1
+========================================
+*/
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+    gap: 20px;
+
+    margin-top: 20px;
+
+}
+
+.dashboard-card {
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,0.08);
+
+    border-left:
+        5px solid #2563eb;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+.dashboard-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(0,0,0,0.15);
+
+}
+
+.dashboard-card h4 {
+
+    margin-bottom: 15px;
+
+    color: #2563eb;
+
+    font-size: 16px;
+
+}
+
+.dashboard-number {
+
+    font-size: 34px;
+
+    font-weight: bold;
+
+    color: #1f2937;
+
+}
+
+.dashboard-value {
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    color: #374151;
+
+}
+
+.dashboard-wide {
+
+    grid-column:
+        1 / -1;
+
+}
+
+.dashboard-wide strong {
+
+    font-size: 18px;
+
+    color: #111827;
+
+}
+
+.dashboard-wide small {
+
+    color: #6b7280;
+
+}
+
+/*
+========================================
+History
+========================================
+*/
+
+.history-item {
+
+    background: #ffffff;
+
+    padding: 16px;
+
+    margin-bottom: 16px;
+
+    border-radius: 10px;
+
+    border-left:
+        5px solid #10b981;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0,0,0,0.08);
+
+}
+
+.history-item strong {
+
+    font-size: 17px;
+
+}
+
+.history-item small {
+
+    color: #6b7280;
+
+}
+
+.history-item hr {
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-top:
+        1px solid #e5e7eb;
+
+}
+
+/*
+========================================
+Animations
+========================================
+*/
+
+.dashboard-card,
+.history-item {
+
+    animation:
+        fadeIn .3s ease;
+
+}
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
