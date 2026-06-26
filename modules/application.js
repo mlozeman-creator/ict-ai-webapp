@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 Application Controller
-Version 1.3.1
+Version 1.4.0
 ========================================
 */
 
@@ -18,7 +18,7 @@ async function startProcess() {
     }
 
     const scope =
-        validateScope(question);
+        await checkScope(question);
 
     updateScopeUI(scope);
 
