@@ -25,19 +25,19 @@ function initializeEventHandlers() {
 
     );
 
-    dashboardButton.addEventListener(
-
-        "click",
-
-        showDashboardPage
-
-    );
-
     historyButton.addEventListener(
 
         "click",
 
         showHistoryPage
+
+    );
+
+    dashboardButton.addEventListener(
+
+        "click",
+
+        showDashboardPage
 
     );
 
