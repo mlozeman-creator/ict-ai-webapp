@@ -119,6 +119,41 @@ const StorageService = {
 
         return usage;
 
-    }
+    },
+    /*
+    ========================================
+    History
+    ========================================
+    */
 
+    getHistory() {
+
+        return this.get(
+            "history",
+            []
+        );
+
+    },
+
+    addHistoryItem(item) {
+
+        const history =
+            this.getHistory();
+
+        history.unshift(item);
+
+        if (history.length > 50) {
+
+            history.pop();
+
+        }
+
+        this.set(
+            "history",
+            history
+        );
+
+        return history;
+
+    }
 };
