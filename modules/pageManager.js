@@ -44,18 +44,7 @@ function showDashboardPage() {
     questionPage.style.display =
         "block";
 
-    answerContainer.innerHTML = `
-
-        <h3>📊 Dashboard</h3>
-
-        <p>
-
-            Dashboard wordt gebouwd
-            in een volgende sprint.
-
-        </p>
-
-    `;
+    showDashboard();
 
 }
 
