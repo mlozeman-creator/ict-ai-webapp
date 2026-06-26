@@ -72,13 +72,27 @@ async function startProcess() {
 
     }
 
-    showAnswer(
+   showAnswer(
 
     result.answer
 
 );
 
 StorageService.increaseQuestionCounter();
+
+StorageService.addHistoryItem({
+
+    question: question,
+
+    style: currentResponseStyle,
+
+    engine: Settings.useAIScope
+        ? "AI"
+        : "Keyword",
+
+    date: new Date().toLocaleString("nl-NL")
+
+});
 
 updateUsageCard();
 
