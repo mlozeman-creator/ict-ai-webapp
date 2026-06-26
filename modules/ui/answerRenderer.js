@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 Answer Renderer
-Version 1.5.0
+Version 1.5.1
 ========================================
 */
 
@@ -72,6 +72,189 @@ function showErrorMessage(message) {
 
 }
 
+/*
+========================================
+Dashboard
+========================================
+*/
+
+function showDashboard() {
+
+    const usage =
+        StorageService.getUsage();
+
+    const history =
+        StorageService.getHistory();
+
+    const lastQuestion =
+        history.length
+            ? history[0].question
+            : "-";
+
+    const lastDate =
+        history.length
+            ? history[0].date
+            : "-";
+
+    const currentEngine =
+        Settings.useAIScope
+            ? "AI Scope Engine"
+            : "Keyword Engine";
+
+    let compact = 0;
+    let standard = 0;
+    let extensive = 0;
+
+    history.forEach(item => {
+
+        switch (item.style) {
+
+            case "compact":
+
+                compact++;
+
+                break;
+
+            case "standard":
+
+                standard++;
+
+                break;
+
+            case "extensive":
+
+                extensive++;
+
+                break;
+
+        }
+
+    });
+
+    let favoriteStyle = "-";
+
+    if (
+        compact >= standard &&
+        compact >= extensive
+    ) {
+
+        favoriteStyle = "Compact";
+
+    }
+
+    else if (
+        standard >= compact &&
+        standard >= extensive
+    ) {
+
+        favoriteStyle = "Standaard";
+
+    }
+
+    else {
+
+        favoriteStyle = "Uitgebreid";
+
+    }
+
+    answerContainer.innerHTML = `
+
+        <h3>📊 Dashboard</h3>
+
+        <div class="dashboard-grid">
+
+            <div class="dashboard-card">
+
+                <h4>📅 Vandaag</h4>
+
+                <div class="dashboard-number">
+
+                    ${usage.todayQuestions}
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <h4>📈 Totaal</h4>
+
+                <div class="dashboard-number">
+
+                    ${usage.totalQuestions}
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <h4>🤖 Scope Engine</h4>
+
+                <div class="dashboard-value">
+
+                    ${currentEngine}
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <h4>⭐ Favoriete stijl</h4>
+
+                <div class="dashboard-value">
+
+                    ${favoriteStyle}
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <h4>📚 Geschiedenis</h4>
+
+                <div class="dashboard-number">
+
+                    ${history.length}
+
+                </div>
+
+            </div>
+
+            <div class="dashboard-card dashboard-wide">
+
+                <h4>🕒 Laatste vraag</h4>
+
+                <strong>
+
+                    ${lastQuestion}
+
+                </strong>
+
+                <br><br>
+
+                <small>
+
+                    ${lastDate}
+
+                </small>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+/*
+========================================
+History
+========================================
+*/
+
 function showHistory() {
 
     const history =
@@ -139,6 +322,12 @@ function showHistory() {
         html;
 
 }
+
+/*
+========================================
+Scope UI
+========================================
+*/
 
 function resetScopeUI() {
 
