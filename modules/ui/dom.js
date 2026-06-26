@@ -2,7 +2,7 @@
 ========================================
 ICT AI Assistant
 DOM References
-Version 1.3.1
+Version 1.4.1
 ========================================
 */
 
@@ -38,6 +38,18 @@ const scopeTitle =
 
 const scopeText =
     document.getElementById("scopeTekst");
+
+const scopeEngineStatus =
+    document.getElementById("scopeEngineStatus");
+
+const scopeEngineButton =
+    document.getElementById("scopeEngineButton");
+
+const todayUsage =
+    document.getElementById("todayUsage");
+
+const totalUsage =
+    document.getElementById("totalUsage");
 
 const generateButton =
     document.querySelector(".button");
