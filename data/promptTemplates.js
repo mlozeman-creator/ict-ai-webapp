@@ -52,6 +52,9 @@ Houd het antwoord compact.
 Gebruik maximaal 100 woorden.
 
 Geef een praktijkvoorbeeld indien relevant.
+
+Geef een metafoor indien relevant en wanneer deze
+het onderwerp duidelijker of begrijpelijker maakt.
 `,
 
     standard: `
@@ -89,6 +92,8 @@ de invoer een redelijk en bruikbaar antwoord kunt geven.
 Verander een gebruikersopdracht niet in een analyse
 of beschrijving van de opdracht.
 
+Volg altijd het type opdracht dat de gebruiker geeft.
+
 Antwoord altijd in het Nederlands.
 
 Gebruik eenvoudige en duidelijke taal.
@@ -100,6 +105,9 @@ Gebruik duidelijke kopjes.
 Geef een concreet en bruikbaar antwoord.
 
 Geef een praktijkvoorbeeld indien relevant.
+
+Geef een metafoor indien relevant en wanneer deze
+het onderwerp duidelijker of begrijpelijker maakt.
 `,
 
     extensive: `
@@ -151,6 +159,9 @@ Als het antwoord een procedure, installatie of configuratie betreft,
 gebruik dan genummerde stappen.
 
 Geef praktische voorbeelden indien relevant.
+
+Geef een metafoor indien relevant en wanneer deze
+het onderwerp duidelijker of begrijpelijker maakt.
 
 Noem voordelen, aandachtspunten en eventuele voorwaarden
 wanneer deze relevant zijn.
