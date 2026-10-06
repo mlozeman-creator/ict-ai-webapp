@@ -26,6 +26,13 @@ function buildPrompt(question, responseStyle) {
 
             break;
 
+        case "standard-new":
+
+            template =
+                PromptTemplates.standardNew;
+
+            break;
+
         case "extensive":
 
             template =
