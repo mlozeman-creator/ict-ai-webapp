@@ -29,10 +29,15 @@ function updatePromptPreview(
         question ||
         "Nog geen vraag";
 
-    responseStyleText.textContent =
+    const responseStyleLabels = {
+        compact: "Compact",
+        standard: "Standaard",
+        "standard-new": "Standaard nieuw",
+        extensive: "Uitgebreid"
+    };
 
-        responseStyle.charAt(0).toUpperCase() +
-        responseStyle.slice(1);
+    responseStyleText.textContent =
+        responseStyleLabels[responseStyle] || responseStyle;
 
     if (!question) {
 
