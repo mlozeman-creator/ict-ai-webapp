@@ -104,6 +104,7 @@ function showDashboard() {
     let compact = 0;
     let standard = 0;
     let extensive = 0;
+    let standardNew = 0;
 
     history.forEach(item => {
 
@@ -127,33 +128,29 @@ function showDashboard() {
 
                 break;
 
+            case "standard-new":
+
+                standardNew++;
+
+                break;
+
         }
 
     });
 
     let favoriteStyle = "-";
 
-    if (
-        compact >= standard &&
-        compact >= extensive
-    ) {
+    if (history.length) {
 
-        favoriteStyle = "Compact";
+        const styleCounts = [
+            ["Compact", compact],
+            ["Standaard", standard],
+            ["Standaard nieuw", standardNew],
+            ["Uitgebreid", extensive]
+        ];
 
-    }
-
-    else if (
-        standard >= compact &&
-        standard >= extensive
-    ) {
-
-        favoriteStyle = "Standaard";
-
-    }
-
-    else {
-
-        favoriteStyle = "Uitgebreid";
+        styleCounts.sort((a, b) => b[1] - a[1]);
+        favoriteStyle = styleCounts[0][0];
 
     }
 
