@@ -74,6 +74,9 @@ const ictKeywords = [
     "tcp",
     "udp",
     "vpn",
+    "glasvezel",
+    "fiber",
+    "dark fiber",
     "firewall",
 
     // Operating Systems
