@@ -50,6 +50,7 @@ const ictKeywords = [
     "graphql",
     "frontend",
     "backend",
+    "cookies",
     "fullstack",
 
     // Databases
