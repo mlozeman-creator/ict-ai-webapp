@@ -42,13 +42,19 @@ function showAnswer(answer) {
     const text = String(answer ?? "");
 
     if (window.marked && window.DOMPurify) {
-        // Marked converteert Markdown; DOMPurify verwijdert onveilige HTML.
+
+        // Marked converteert Markdown naar HTML.
+        // DOMPurify verwijdert potentieel gevaarlijke HTML.
         const parsed = marked.parse(text);
+
         content.innerHTML = DOMPurify.sanitize(parsed);
+
     } else {
-        // Veilige terugval wanneer een externe bibliotheek niet laadt.
+
+        // Veilige terugval wanneer een bibliotheek niet beschikbaar is.
         content.textContent = text;
         content.style.whiteSpace = "pre-wrap";
+
     }
 
     answerContainer.appendChild(content);
@@ -73,8 +79,37 @@ function showErrorMessage(message) {
     answerContainer.innerHTML = "<h3>Fout</h3>";
 
     const paragraph = document.createElement("p");
+
     paragraph.textContent = String(message ?? "");
+
     answerContainer.appendChild(paragraph);
+
+}
+
+/*
+========================================
+HTML ESCAPING
+========================================
+*/
+
+// Zet dynamische tekst veilig om voordat deze
+// in een HTML-sjabloon wordt geplaatst.
+//
+// Hiermee voorkomen we dat HTML-tekens uit
+// bijvoorbeeld gebruikersvragen als HTML
+// worden geïnterpreteerd.
+
+function escapeHTML(value) {
+
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+
+    })[character]);
 
 }
 
@@ -149,13 +184,16 @@ function showDashboard() {
     if (history.length) {
 
         const styleCounts = [
+
             ["Compact", compact],
             ["Standaard", standard],
             ["Standaard nieuw", standardNew],
             ["Uitgebreid", extensive]
+
         ];
 
         styleCounts.sort((a, b) => b[1] - a[1]);
+
         favoriteStyle = styleCounts[0][0];
 
     }
@@ -266,13 +304,13 @@ function showHistory() {
     if (history.length === 0) {
 
         answerContainer.innerHTML = `
+
             <h3>🕒 Geschiedenis</h3>
 
             <p>
-
                 Er zijn nog geen vragen opgeslagen.
-
             </p>
+
         `;
 
         return;
@@ -321,8 +359,7 @@ function showHistory() {
 
     });
 
-    answerContainer.innerHTML =
-        html;
+    answerContainer.innerHTML = html;
 
 }
 
@@ -384,9 +421,7 @@ function updateScopeUI(scope) {
         scopeText.textContent =
             "De vraag voldoet aan alle controles.";
 
-    }
-
-    else {
+    } else {
 
         scopeTitle.textContent =
             "❌ Vraag afgekeurd";
