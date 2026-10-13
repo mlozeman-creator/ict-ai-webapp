@@ -79,6 +79,7 @@ const ictKeywords = [
     // Operating Systems
 
     "windows",
+    "files",
     "linux",
     "macos",
 
