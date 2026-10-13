@@ -33,15 +33,25 @@ function showLoadingMessage() {
 
 function showAnswer(answer) {
 
-    answerContainer.innerHTML = `
-        <h3>AI-antwoord</h3>
+    // De AI-uitvoer is niet vertrouwd: alleen gesaniteerde HTML invoegen.
+    answerContainer.innerHTML = "<h3>AI-antwoord</h3>";
 
-        <div>
+    const content = document.createElement("div");
+    content.className = "ai-answer-content";
 
-            ${answer.replace(/\n/g, "<br>")}
+    const text = String(answer ?? "");
 
-        </div>
-    `;
+    if (window.marked && window.DOMPurify) {
+        // Marked converteert Markdown; DOMPurify verwijdert onveilige HTML.
+        const parsed = marked.parse(text);
+        content.innerHTML = DOMPurify.sanitize(parsed);
+    } else {
+        // Veilige terugval wanneer een externe bibliotheek niet laadt.
+        content.textContent = text;
+        content.style.whiteSpace = "pre-wrap";
+    }
+
+    answerContainer.appendChild(content);
 
 }
 
@@ -60,15 +70,11 @@ function showRejectedMessage() {
 
 function showErrorMessage(message) {
 
-    answerContainer.innerHTML = `
-        <h3>Fout</h3>
+    answerContainer.innerHTML = "<h3>Fout</h3>";
 
-        <p>
-
-            ${message}
-
-        </p>
-    `;
+    const paragraph = document.createElement("p");
+    paragraph.textContent = String(message ?? "");
+    answerContainer.appendChild(paragraph);
 
 }
 
@@ -166,7 +172,7 @@ function showDashboard() {
 
                 <div class="dashboard-number">
 
-                    ${usage.todayQuestions}
+                    ${escapeHTML(usage.todayQuestions)}
 
                 </div>
 
@@ -178,7 +184,7 @@ function showDashboard() {
 
                 <div class="dashboard-number">
 
-                    ${usage.totalQuestions}
+                    ${escapeHTML(usage.totalQuestions)}
 
                 </div>
 
@@ -190,7 +196,7 @@ function showDashboard() {
 
                 <div class="dashboard-value">
 
-                    ${currentEngine}
+                    ${escapeHTML(currentEngine)}
 
                 </div>
 
@@ -202,7 +208,7 @@ function showDashboard() {
 
                 <div class="dashboard-value">
 
-                    ${favoriteStyle}
+                    ${escapeHTML(favoriteStyle)}
 
                 </div>
 
@@ -214,7 +220,7 @@ function showDashboard() {
 
                 <div class="dashboard-number">
 
-                    ${history.length}
+                    ${escapeHTML(history.length)}
 
                 </div>
 
@@ -226,7 +232,7 @@ function showDashboard() {
 
                 <strong>
 
-                    ${lastQuestion}
+                    ${escapeHTML(lastQuestion)}
 
                 </strong>
 
@@ -234,7 +240,7 @@ function showDashboard() {
 
                 <small>
 
-                    ${lastDate}
+                    ${escapeHTML(lastDate)}
 
                 </small>
 
@@ -287,7 +293,7 @@ function showHistory() {
 
                 <strong>
 
-                    ${item.question}
+                    ${escapeHTML(item.question)}
 
                 </strong>
 
@@ -295,15 +301,15 @@ function showHistory() {
 
                 <small>
 
-                    📅 ${item.date}
+                    📅 ${escapeHTML(item.date)}
 
                     <br>
 
-                    🎯 ${item.style}
+                    🎯 ${escapeHTML(item.style)}
 
                     |
 
-                    🤖 ${item.engine}
+                    🤖 ${escapeHTML(item.engine)}
 
                 </small>
 
