@@ -39,12 +39,6 @@ const scopeTitle =
 const scopeText =
     document.getElementById("scopeTekst");
 
-const scopeEngineStatus =
-    document.getElementById("scopeEngineStatus");
-
-const scopeEngineButton =
-    document.getElementById("scopeEngineButton");
-
 const todayUsage =
     document.getElementById("todayUsage");
 
