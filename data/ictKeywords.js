@@ -24,6 +24,7 @@ const ictKeywords = [
     "informatica",
     "digitalisering",
     "technologie",
+    "file",
     "ai",
 
     // Programming
@@ -51,6 +52,7 @@ const ictKeywords = [
     "frontend",
     "backend",
     "cookies",
+    "cookie",
     "fullstack",
 
     // Databases
