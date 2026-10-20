@@ -286,6 +286,7 @@ const ictKeywords = [
     "802.11",
     "wpa2",
     "wpa3",
+    "lijnverbinding",
 
     // Operating Systems
 
